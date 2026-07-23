@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+streamlit
+pandas
+plotly
+yfinance
+requests
+python-dotenv
+google-genai
+beautifulsoup4
+lxml
+sqlalchemy

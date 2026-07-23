@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import requests
@@ -21,7 +22,10 @@ from charts import (
 # PAGE CONFIG
 # =====================================================
 
-API_URL = "http://127.0.0.1:8000"
+try:
+    API_URL = st.secrets.get("API_URL", os.environ.get("API_URL", "http://127.0.0.1:8000"))
+except Exception:
+    API_URL = os.environ.get("API_URL", "http://127.0.0.1:8000")
 
 st.set_page_config(
     page_title="FinPulse Terminal",

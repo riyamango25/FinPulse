@@ -1,7 +1,10 @@
-import requests
+import sys
+import os
 import streamlit as st
 
-API_URL = "http://127.0.0.1:8000"
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from backend.fetch_financials import get_financials
 
 
 # --------------------------------------------------
@@ -96,19 +99,13 @@ def display_key_financials(symbol):
     )
 
     try:
-
-        response = requests.get(
-            f"{API_URL}/financials/{symbol}"
-        )
-
-        response.raise_for_status()
-
-        data = response.json()
-
+        data = get_financials(symbol)
     except Exception:
-
         st.warning("Financial data unavailable.")
+        return
 
+    if not data or "error" in data:
+        st.warning("Financial data unavailable.")
         return
 
     col1, col2 = st.columns(2)

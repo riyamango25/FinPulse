@@ -1,7 +1,5 @@
-import requests
 import streamlit as st
-
-API_URL = "http://127.0.0.1:8000"
+from backend.fetch_news import get_market_news  # adjust import path to match your project structure
 
 
 # =====================================================
@@ -11,35 +9,20 @@ API_URL = "http://127.0.0.1:8000"
 def display_market_news():
 
     try:
-
-        response = requests.get(
-            f"{API_URL}/market-news"
-        )
-
-        response.raise_for_status()
-
-        articles = response.json()
-
-    except Exception:
-
+        articles = get_market_news()
+    except Exception as e:
         st.warning("Unable to load market news.")
-
         return
 
     if not articles:
-
         st.info("No recent news available.")
-
         return
 
     for article in articles:
 
         title = article.get("title", "Untitled")
-
         publisher = article.get("publisher", "Unknown")
-
         published = article.get("published", "")
-
         link = article.get("link", "")
 
         st.markdown(
@@ -51,7 +34,6 @@ border-left:4px solid #22C55E;
 border-radius:12px;
 padding:16px 18px;
 margin-bottom:12px;
-transition:.2s;
 ">
 
 <div style="
@@ -67,18 +49,14 @@ letter-spacing:.12em;
 text-transform:uppercase;
 color:#94A3B8;
 ">
-
 {publisher}
-
 </div>
 
 <div style="
 font-size:12px;
 color:#6B7280;
 ">
-
 {published}
-
 </div>
 
 </div>
@@ -89,19 +67,9 @@ font-weight:700;
 line-height:1.45;
 margin-bottom:14px;
 ">
-
-<a
-href="{link}"
-target="_blank"
-style="
-text-decoration:none;
-color:white;
-">
-
+<a href="{link}" target="_blank" style="text-decoration:none;color:white;">
 {title}
-
 </a>
-
 </div>
 
 <div style="
@@ -109,9 +77,7 @@ font-size:13px;
 font-weight:600;
 color:#22C55E;
 ">
-
 Read Full Story →
-
 </div>
 
 </div>

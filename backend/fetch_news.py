@@ -39,23 +39,15 @@ def get_market_news():
                 link = canonical.get("url")
 
             articles.append({
-
                 "title": content.get("title"),
-
                 "publisher": provider.get("displayName"),
-
                 "link": link,
-
                 "published": published,
-
             })
 
         return articles
 
     except Exception as e:
 
-        return {
-
-            "error": str(e)
-
-        }
+        print(f"[market-news] fetch failed: {e}")  # shows up in your logs now
+        return []

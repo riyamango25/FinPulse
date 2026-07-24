@@ -1,7 +1,10 @@
 import streamlit as st
-from backend.fetch_news import get_market_news  # adjust import path to match your project structure
+import sys
+import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+from backend.fetch_news import get_market_news
 # =====================================================
 # MARKET NEWS
 # =====================================================

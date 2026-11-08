@@ -104,17 +104,6 @@ streamlit run app.py
 
 ---
 
-## 📸 Screenshots
-
-Add screenshots of:
-
-- Dashboard
-- AI Summary
-- Market Analytics
-- Portfolio Simulator
-
----
-
 ## 🔮 Future Improvements
 
 - User authentication
